@@ -21,25 +21,20 @@ const nextConfig = {
       },
       {
         protocol: "https",
-        hostname: process.env.NEXT_PUBLIC_MEDUSA_BACKEND_URL?.replace('https://', ''),
+        hostname: "backend-production-477a.up.railway.app",
       },
       {
         protocol: "https",
         hostname: "medusa-public-images.s3.eu-west-1.amazonaws.com",
       },
-      {
-        protocol: "https",
-        hostname: "medusa-server-testing.s3.amazonaws.com",
-      },
-      {
-        protocol: "https",
-        hostname: "medusa-server-testing.s3.us-east-1.amazonaws.com",
-      },
-      ...(process.env.NEXT_PUBLIC_MINIO_ENDPOINT ? [{
-        protocol: "https",
-        hostname: process.env.NEXT_PUBLIC_MINIO_ENDPOINT,
-      }] : []),
     ],
+  },
+  experimental: {
+    optimizeCss: true,
+    optimizePackageImports: ['@medusajs/ui'],
+  },
+  env: {
+    NODE_OPTIONS: '--max-old-space-size=4096'
   },
   serverRuntimeConfig: {
     port: process.env.PORT || 3000
